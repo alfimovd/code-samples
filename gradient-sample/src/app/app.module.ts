@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { 
   MatToolbarModule,
@@ -8,14 +9,18 @@ import {
   MatIconModule,
   MatGridListModule,
   MatFormFieldModule,
+  MatDividerModule,
+  MatCheckboxModule,
   MatChipsModule
 } from '@angular/material';
 const MAT_MODULES = [
   MatToolbarModule,
   MatButtonModule,
   MatIconModule,
+  MatDividerModule,
   MatGridListModule,
   MatFormFieldModule,
+  MatCheckboxModule,
   MatChipsModule
 ];
 
@@ -29,6 +34,7 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
     FlexLayoutModule,
     ...MAT_MODULES
   ],

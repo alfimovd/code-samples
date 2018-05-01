@@ -3,13 +3,17 @@
 </mat-toolbar>
 <div class="content" fxLayout fxLayout.xs="column" fxFlexFill>
   <section class="form layout-padding mat-elevation-z3" fxFlex='30%'>
-    <h3>Gradient params</h3>
+    <p class="mat-body-1">
+      Sample of use gragient.js
+    </p>
+    <p class="mat-body-1">
+      Create a list of objects and define the color of its elements using a gradient
+    </p>
     <mat-form-field>
       <mat-chip-list #chipList>
-        <mat-chip *ngFor="let color of colors" [selectable]="selectable"
-                  [removable]="removable" (remove)="remove(color)">
-          {{color.name}}
-          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        <mat-chip *ngFor="let color of colors" (remove)="remove(color)" [ngStyle]="{'background': color}">
+          {{color}}
+          <mat-icon matChipRemove>cancel</mat-icon>
         </mat-chip>
         <input placeholder="Colors"
                 [matChipInputFor]="chipList"
@@ -18,16 +22,23 @@
                 (matChipInputTokenEnd)="add($event)" />
       </mat-chip-list>
     </mat-form-field>
+    <div class="form-row">
+      <mat-checkbox [(ngModel)]="sorting">Sorting</mat-checkbox>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="form-row">
+      <button mat-button color="primary" (click)="usePreset(0)">Preset 1</button>
+      <button mat-button color="primary" (click)="usePreset(1)">Preset 2</button>
+      <button mat-button color="primary" (click)="usePreset(2)">Preset 3</button>
+    </div>
   </section>
   <section class="samples" fxFlex>
-      <mat-grid-list cols="2" rowHeight="7:1">
-        <mat-grid-tile>1</mat-grid-tile>
-        <mat-grid-tile>2</mat-grid-tile>
-        <mat-grid-tile>3</mat-grid-tile>
-        <mat-grid-tile>4</mat-grid-tile>
-        <mat-grid-tile>3</mat-grid-tile>
-        <mat-grid-tile>4</mat-grid-tile>
-      </mat-grid-list>
+    <mat-grid-list cols="2" rowHeight="7:1">
+      <mat-grid-tile *ngFor="let sample of samples" [ngStyle]="sample.style">
+        {{sample.value}}
+        {{sample.style.background}}
+      </mat-grid-tile>
+    </mat-grid-list>
   </section>
 </div>
   
