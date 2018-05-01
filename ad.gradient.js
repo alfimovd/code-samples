@@ -82,7 +82,7 @@ export default class Gradient {
   }
 
   /**
-   * By value and min-max range, return gradient color index
+   * By value and min-max range, return index of gradient color 
    *
    * @param      {number}  value   The value
    * @param      {number}  max     The maximum
@@ -95,13 +95,13 @@ export default class Gradient {
       min = 0;
     }
     if (value >= max) {
-      return this.size - 1;
-    }
-    if (value <= min) {
       return 0;
     }
+    if (value <= min) {
+      return this.size - 1;
+    }    
     const range = max - min;
-    const valueInRange = max - value - min;
+    const valueInRange = range - Math.abs(min) - value;
     return (valueInRange / range * this.size).toFixed(0);
   }
 
