@@ -1,6 +1,6 @@
 # Code samples
 
-same code samples
+some code samples
 
 Components
 ---
