@@ -1,12 +1,33 @@
 <mat-toolbar color="primary">
   <span>Gradient sample</span>
 </mat-toolbar>
-<div class="content">
-  <section class="form">
-
+<div class="content" fxLayout fxLayout.xs="column" fxFlexFill>
+  <section class="form layout-padding mat-elevation-z3" fxFlex='30%'>
+    <h3>Gradient params</h3>
+    <mat-form-field>
+      <mat-chip-list #chipList>
+        <mat-chip *ngFor="let color of colors" [selectable]="selectable"
+                  [removable]="removable" (remove)="remove(color)">
+          {{color.name}}
+          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        </mat-chip>
+        <input placeholder="Colors"
+                [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                [matChipInputAddOnBlur]="addOnBlur"
+                (matChipInputTokenEnd)="add($event)" />
+      </mat-chip-list>
+    </mat-form-field>
   </section>
-  <section class="samples">
-
+  <section class="samples" fxFlex>
+      <mat-grid-list cols="2" rowHeight="7:1">
+        <mat-grid-tile>1</mat-grid-tile>
+        <mat-grid-tile>2</mat-grid-tile>
+        <mat-grid-tile>3</mat-grid-tile>
+        <mat-grid-tile>4</mat-grid-tile>
+        <mat-grid-tile>3</mat-grid-tile>
+        <mat-grid-tile>4</mat-grid-tile>
+      </mat-grid-list>
   </section>
 </div>
   
