@@ -45,7 +45,10 @@ export class AppComponent {
 
   addOnBlur: boolean = true;
   // separate by enter and comma 
-  separatorKeysCodes = [ENTER, COMMA];
+  separatorKeysCodes = [ENTER];
+
+  // Regexp to check colors HEX RGB(a) HSL(a)
+  private regexpColor = /(#([\da-f]{3}){1,2}|(rgb|hsl)a\((\d{1,3}%?,\s?){3}(1|0?\.\d+)\)|(rgb|hsl)\(\d{1,3}%?(,\s?\d{1,3}%?){2}\))/i;
 
   constructor(
     private snackBar: MatSnackBar
@@ -60,6 +63,15 @@ export class AppComponent {
   add(event: MatChipInputEvent): void {
     let input = event.input;
     let value = event.value;
+
+    if (!this.regexpColor.test(value)) {
+      this.snackBar.open(
+        'You should enter valid color',
+        'Ok',
+        { duration: 2000 }
+      );
+      return;
+    }
 
     // Add color
     if ((value || '').trim()) {
