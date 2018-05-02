@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MatChipInputEvent } from '@angular/material';
+import { MatChipInputEvent, MatSnackBar } from '@angular/material';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import Gradient from './ad.gradient.js';
 
@@ -47,7 +47,9 @@ export class AppComponent {
   // separate by enter and comma 
   separatorKeysCodes = [ENTER, COMMA];
 
-  constructor() {
+  constructor(
+    private snackBar: MatSnackBar
+  ) {
     this.usePreset(0);
   }
 
@@ -96,6 +98,14 @@ export class AppComponent {
    * update sample object and graduents
    */
   updateGradient() {
+    if (this.colors.length < 2 ) {
+      this.snackBar.open(
+        'To create a gradient, you must specify at least two colors',
+        'Ok',
+        { duration: 2000 }
+      );
+      return;
+    }
     this.gradient = new Gradient(this.colors);
     let newSamples = this.createSampleObjectList(this.samplesCount, this.sampleValueRange);
     newSamples = this.setGradientStyleToSamples(newSamples, this.sampleValueRange, this.gradient);

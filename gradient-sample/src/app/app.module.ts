@@ -7,6 +7,7 @@ import {
   MatToolbarModule,
   MatButtonModule,
   MatIconModule,
+  MatSnackBarModule,
   MatGridListModule,
   MatFormFieldModule,
   MatDividerModule,
@@ -16,6 +17,7 @@ import {
 const MAT_MODULES = [
   MatToolbarModule,
   MatButtonModule,
+  MatSnackBarModule,
   MatIconModule,
   MatDividerModule,
   MatGridListModule,
