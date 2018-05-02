@@ -23,7 +23,7 @@
       </mat-chip-list>
     </mat-form-field>
     <div class="form-row">
-      <mat-checkbox [(ngModel)]="sorting">Sorting</mat-checkbox>
+      <mat-checkbox [(ngModel)]="sorting" (change)='updateGradient()'>Sort samples by value</mat-checkbox>
     </div>
     <mat-divider></mat-divider>
     <div class="form-row">

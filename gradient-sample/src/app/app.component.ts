@@ -114,6 +114,7 @@ export class AppComponent {
   private setGradientStyleToSamples(samples, range: Range, gradient) {
     return samples.map(sample => {
       sample.style = {
+        // color defined by value and range
         background: gradient.getColor(sample.value, range.max, range.min)
       };
       return sample;
