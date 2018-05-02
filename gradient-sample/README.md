@@ -1,5 +1,14 @@
 # GradientSample
 
+Simple gradient sample based on Angular
+
+Project generate random value series and colored this samples by gradient
+
+to start app run 
+
+    npm i
+    ng serve
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.4.
 
 ## Development server
