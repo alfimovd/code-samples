@@ -16,6 +16,7 @@ export default class Gradient {
     gradientColors = ['#00f', '#0ff', '#0f0', '#ff0', '#f00'],
     size = 256
   ) {
+    this.validateParams(gradientColors, size);
     this.size = size;
     this.gradientData = this.getGradientData(gradientColors, size);
     this.rgbaColorList = this.getRgbaColorList(this.gradientData);
@@ -137,5 +138,19 @@ export default class Gradient {
     canvas.width = width;
     canvas.height = height;
     return canvas.getContext('2d');
+  }
+
+  /**
+   * Validate initial params
+   * @param {*} gradientColors Arr of colors
+   * @param {*} size gradient size
+   */
+  validateParams(gradientColors, size) {
+    if (gradientColors.length < 2) {
+      throw new Error('Color array must contain two and more items');
+    }
+    if (size < gradientColors.length) {
+      throw new Error('Small gradient size');
+    }
   }
 }
