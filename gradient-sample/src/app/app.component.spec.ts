@@ -12,7 +12,8 @@ import {
   MatFormFieldModule,
   MatDividerModule,
   MatCheckboxModule,
-  MatChipsModule
+  MatChipsModule,
+  MatChipInputEvent
 } from '@angular/material';
 const MAT_MODULES = [
   MatToolbarModule,
@@ -96,5 +97,23 @@ describe('AppComponent', () => {
         Number.NEGATIVE_INFINITY
       )
     ).toBeLessThanOrEqual(range.max, 'range max err');
+  }));
+
+  it(`should add/remove colors`, async(() => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    let newColor = "#000";
+    app.add({
+      input: {
+        value: newColor
+      },
+      value: newColor
+    });
+    expect(app.colors[app.colors.length - 1]).toEqual(newColor, 'color must be added');
+    app.remove(newColor);
+    expect(app.colors[app.colors.length - 1]).not.toEqual(newColor, 'color must be removed');
+    let length = app.colors.length;
+    app.remove(newColor);
+    expect(app.colors.length).toEqual(length);
   }));
 });
