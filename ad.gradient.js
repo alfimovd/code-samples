@@ -96,14 +96,14 @@ export default class Gradient {
       min = 0;
     }
     if (value >= max) {
-      return 0;
+      return this.size - 1;
     }
     if (value <= min) {
-      return this.size - 1;
+      return 0;
     }    
     const range = max - min;
-    const valueInRange = range - Math.abs(min) - value;
-    return (valueInRange / range * this.size).toFixed(0);
+    const valueInRange = range - (range + min - value);
+    return parseInt((valueInRange / range * (this.size - 1)).toFixed(0), 10);
   }
 
   /**
