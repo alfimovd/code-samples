@@ -44,7 +44,7 @@ export class AppComponent {
   ];
 
   addOnBlur: boolean = true;
-  // separate by enter and comma 
+  // separate by enter 
   separatorKeysCodes = [ENTER];
 
   // Regexp to check colors HEX RGB(a) HSL(a)
@@ -64,12 +64,7 @@ export class AppComponent {
     let input = event.input;
     let value = event.value;
 
-    if (!this.regexpColor.test(value)) {
-      this.snackBar.open(
-        'You should enter valid color',
-        'Ok',
-        { duration: 2000 }
-      );
+    if (!this.colorIsValid(value)) {
       return;
     }
 
@@ -125,6 +120,18 @@ export class AppComponent {
       newSamples.sort((a, b) => a.value - b.value);
     }
     this.samples = newSamples;
+  }
+
+  private colorIsValid(color: string): boolean {
+    let isValid = this.regexpColor.test(color);
+    if (!isValid) {
+      this.snackBar.open(
+        'You should enter valid color',
+        'Ok',
+        { duration: 2000 }
+      );
+    }
+    return isValid;
   }
 
   /**
