@@ -71,4 +71,30 @@ describe('AppComponent', () => {
     expect(app.colorIsValid('0, 0, 0')).toEqual(false);
     expect(app.colorIsValid('white')).toEqual(false);
   }));
+
+  it(`should create correct sample object series`, async(() => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    let range = {
+      min: -100,
+      max: 100
+    }
+    let itemsCount = 100;
+    let list = app.createSampleObjectList(itemsCount, range);
+    expect(list.length).toEqual(itemsCount, 'wrong counts');
+    expect(
+      // min value in list
+      list.reduce(
+        (mem, item) => item.value > mem ? mem : item.value,
+        Number.POSITIVE_INFINITY
+      )
+    ).toBeGreaterThanOrEqual(range.min, 'range min err');
+    expect(
+      // max value in list
+      list.reduce(
+        (mem, item) => item.value < mem ? mem : item.value,
+        Number.NEGATIVE_INFINITY
+      )
+    ).toBeLessThanOrEqual(range.max, 'range max err');
+  }));
 });
